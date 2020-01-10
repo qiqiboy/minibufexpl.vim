@@ -854,7 +854,7 @@ function! <SID>UpdateExplorer(curBufNum)
     return
   endif
 
-  if !bufname(a:curBufNum)
+  if bufname(a:curBufNum) == ''
     return
   endif
 
@@ -2323,13 +2323,13 @@ endfunction
 " ListPush {{{
 "
 function! <SID>ListPush(list,val)
-  if !bufname(a:val)
-    return
-  endif
-
   call <SID>DEBUG('Entering ListPush('.string(a:list).','.a:val.')',10)
   " Remove the buffer number from the list if it already exists.
   call <SID>ListPop(a:list,a:val)
+
+  if bufname(a:val) == ''
+    return
+  endif
 
   " Add the buffer number to the head of the list.
   call insert(a:list,a:val)
