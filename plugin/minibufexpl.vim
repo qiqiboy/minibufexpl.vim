@@ -848,13 +848,13 @@ function! <SID>UpdateExplorer(curBufNum)
 
   call <SID>DEBUG('Current state: '.winnr().' : '.bufnr('%').' : '.bufname('%'),10)
 
-  if !<SID>BuildBufferList(a:curBufNum)
-    call <SID>DEBUG('Buffer List have not changed, aborting...',10)
-    call <SID>DEBUG('Leaving UpdateExplorer()',10)
+  if bufname(a:curBufNum) == ''
     return
   endif
 
-  if bufname(a:curBufNum) == ''
+  if !<SID>BuildBufferList(a:curBufNum)
+    call <SID>DEBUG('Buffer List have not changed, aborting...',10)
+    call <SID>DEBUG('Leaving UpdateExplorer()',10)
     return
   endif
 
