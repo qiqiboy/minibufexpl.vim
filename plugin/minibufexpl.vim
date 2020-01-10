@@ -1487,6 +1487,12 @@ function! <SID>IsBufferIgnored(buf)
     return 1
   endif
 
+  if bufname(a:buf) == ''
+    return 1
+  endif
+
+  call <SID>DEBUG('Buffer '.a:buf.', bufname:'.bufname(a:buf).', bufnr:'.bufnr(a:buf), 4)
+
   call <SID>DEBUG('Leaving IsBufferIgnored()',10)
   return 0
 endfunction
